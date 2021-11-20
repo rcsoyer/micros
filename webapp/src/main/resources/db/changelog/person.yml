@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202110251600
+      author: rcsoyer
+      changes:
+        - createTable:
+            tableName: person
+            remarks: Represents a Person into the system
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+                    unique: true
+                  remarks: The name of the person
+              - column:
+                  name: birth_date
+                  type: date
+                  constraints:
+                    nullable: false
+                  remarks: The birthdate of the person
+              - column:
+                  name: date_created
+                  type: datetime(6)
+                  remarks: The date time of when this Person was created
+              - column:
+                  name: date_modified
+                  type: datetime(6)
+                  remarks: The date time of when this Person was last mofified
+              - column:
+                  name: created_by
+                  type: varchar(50)
+                  remarks: The user that created this Person
+              - column:
+                  name: modified_by
+                  type: varchar(50)
+                  remarks: The user that last modified this Person
+
+  - changeSet:
+      id: 202110270800
+      author: rcsoyer
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: (year(birth_date))
+                  computed: true
+            tableName: person
+            unique: false
+            indexName: idx_birth_date

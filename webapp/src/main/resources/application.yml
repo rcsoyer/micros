@@ -1,0 +1,116 @@
+server:
+  port: 5000
+  shutdown: graceful
+  error:
+    include-stacktrace: never
+    whitelabel.enabled: false
+  servlet:
+    encoding:
+      force: true
+    context-path: /webapp
+  forward-headers-strategy: framework
+  http2:
+    enabled: true
+
+spring:
+  application:
+    name: webapp-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: false
+      data-source-properties:
+        useConfigs: maxPerformance
+        enabledTLSProtocols: TLSv1.2
+        zeroDateTimeBehavior: convertToNull
+        rewriteBatchedStatements: true
+        useServerPrepStmts: true
+        prepStmtCacheSize: 500
+        prepStmtCacheSqlLimit: 2048
+        cacheResultSetMetadata: true
+        useUnbufferedInput: false
+        useReadAheadInput: false
+        maintainTimeStats: false
+        useCursorFetch: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        order_inserts: true
+        order_updates: true
+        connection:
+          autocommit: ${spring.datasource.hikari.auto-commit}
+        jdbc:
+          batch_size: 30
+          fetch_size: 200
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yml
+  lifecycle:
+    timeout-per-shutdown-phase: 80s
+  mvc:
+    contentnegotiation:
+      media-types:
+        defaultContentType:
+          application/json
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+  cache:
+    cache-names: peopleBannedYears
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=6h
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          include-description: true
+
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+      path-mapping:
+        health: health
+        info: info
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      group:
+        liveness:
+          include: livenessstate,livenessStateProbeIndicator,diskSpace,refreshScope
+        readiness:
+          include: readinessState,refreshScope,db
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    disable-swagger-default-url: true
+  default-consumes-media-type: ${spring.mvc.contentnegotiation.media-types.defaultContentType}
+  default-produces-media-type: ${spring.mvc.contentnegotiation.media-types.defaultContentType}
+
+eureka:
+  instance:
+    statusPageUrlPath: ${management.endpoints.web.path-mapping.info}
+    healthCheckUrlPath: ${management.endpoints.web.path-mapping.health}
+    prefer-ip-address: true

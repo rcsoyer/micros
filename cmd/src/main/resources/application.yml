@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: cmdapp
+
+logging:
+  level:
+    root: INFO
+    feign: DEBUG
+
+feign:
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+  circuitbreaker:
+    enabled: true
+    group:
+      enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+
+services:
+  webapp:
+    name: webapp-service
+    endpoints:
+      persons: /webapp/persons

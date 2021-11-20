@@ -1,0 +1,53 @@
+server:
+  port: 8761
+  shutdown: graceful
+  error:
+    include-stacktrace: never
+    whitelabel.enabled: false
+  servlet:
+    encoding:
+      force: true
+  http2:
+    enabled: true
+
+spring:
+  application:
+    name: discovery-service-server
+  lifecycle:
+    timeout-per-shutdown-phase: 80s
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+      path-mapping:
+        health: health
+        info: info
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      group:
+        liveness:
+          include: livenessstate,livenessStateProbeIndicator,diskSpace,refreshScope
+        readiness:
+          include: readinessState,refreshScope
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
