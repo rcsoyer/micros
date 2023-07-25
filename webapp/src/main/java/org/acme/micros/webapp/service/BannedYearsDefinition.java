@@ -5,6 +5,7 @@ import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.time.Year;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import lombok.extern.slf4j.Slf4j;
 import org.acme.micros.webapp.domain.Person;
@@ -40,7 +41,7 @@ public class BannedYearsDefinition {
     public Set<Integer> bannedYearsFromFile() {
         log.debug("Load the banned years info into the cache");
 
-        try (final var fileLines = Files.lines(bannedYearsFile.getFile().toPath())) {
+        try (final Stream<String> fileLines = Files.lines(bannedYearsFile.getFile().toPath())) {
             return fileLines
                      .map(Year::parse)
                      .map(Year::getValue)
