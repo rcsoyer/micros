@@ -1,24 +1,16 @@
 package org.acme.micros.webapp.configuration;
 
-import java.util.Optional;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.AuditorAware;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
+//its useful for reference. But in here disabling it since it would demand to configure a properly secure access
 /**
  * Configuration for auditing JPA entities
  */
-@Configuration
+/*@Configuration
 @EnableJpaAuditing
 public class AuditConfig {
 
-    /***
+    *//***
      * The user that is logged in the app when creating or modifying resources
-     */
+     *//*
     @Bean
     public AuditorAware<String> auditorProvider() {
         return () -> Optional
@@ -26,4 +18,4 @@ public class AuditConfig {
                        .map(Authentication::getName);
     }
 
-}
+}*/
