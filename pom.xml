@@ -21,7 +21,6 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <testcontainers.version>1.16.2</testcontainers.version>
         <zalando.problem-spring.version>0.27.0</zalando.problem-spring.version>
-        <apache.commons-io.version>2.11.0</apache.commons-io.version>
         <org.springdoc.version>1.5.12</org.springdoc.version>
         <maven.tests-plugins.version>3.0.0-M5</maven.tests-plugins.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -71,12 +70,6 @@
                 <groupId>org.zalando</groupId>
                 <artifactId>problem-spring-web</artifactId>
                 <version>${zalando.problem-spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${apache.commons-io.version}</version>
             </dependency>
 
             <dependency>
