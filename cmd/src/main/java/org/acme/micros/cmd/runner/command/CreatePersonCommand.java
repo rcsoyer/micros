@@ -3,7 +3,7 @@ package org.acme.micros.cmd.runner.command;
 import java.time.LocalDate;
 
 import org.acme.micros.cmd.client.webapp.PersonClient;
-import org.acme.micros.cmd.runner.command.dto.PersonCreateDto;
+import org.acme.micros.cmd.runner.command.dto.PersonCreateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -35,7 +35,7 @@ public class CreatePersonCommand implements Runnable {
     public void run() {
         log.info("Name was: {}", personName);
         log.info("BirthDate was: {}", personBirthDate);
-        apiClient.createPerson(new PersonCreateDto(personName, personBirthDate));
+        apiClient.createPerson(new PersonCreateRequest(personName, personBirthDate));
         log.info("All the people not banned: {}", apiClient.findPeopleNotBanned());
     }
 }

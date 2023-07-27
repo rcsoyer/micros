@@ -3,7 +3,7 @@ package org.acme.micros.cmd.runner.command;
 import java.time.LocalDate;
 
 import org.acme.micros.cmd.client.webapp.PersonClient;
-import org.acme.micros.cmd.runner.command.dto.PersonCreateDto;
+import org.acme.micros.cmd.runner.command.dto.PersonCreateRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -27,7 +27,7 @@ class CreatePersonCommandTest {
     private CreatePersonCommand createPersonCommand;
 
     @Captor
-    private ArgumentCaptor<PersonCreateDto> personCaptor;
+    private ArgumentCaptor<PersonCreateRequest> personCaptor;
 
     @Test
     void run() {
@@ -39,7 +39,7 @@ class CreatePersonCommandTest {
         createPersonCommand.run();
 
         verify(personClient).createPerson(personCaptor.capture());
-        final PersonCreateDto person = personCaptor.getValue();
+        final PersonCreateRequest person = personCaptor.getValue();
         assertEquals(personName, person.name());
         assertEquals(personBirthDate, person.birthDate());
 

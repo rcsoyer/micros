@@ -2,7 +2,7 @@ package org.acme.micros.cmd.client.webapp;
 
 import java.util.List;
 
-import org.acme.micros.cmd.runner.command.dto.PersonCreateDto;
+import org.acme.micros.cmd.runner.command.dto.PersonCreateRequest;
 import org.acme.micros.cmd.runner.command.dto.PersonNotBannedResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface PersonClient {
 
     @PostMapping
-    void createPerson(@RequestBody PersonCreateDto person);
+    void createPerson(@RequestBody PersonCreateRequest person);
 
     @GetMapping
     List<PersonNotBannedResponse> findPeopleNotBanned();
@@ -33,7 +33,7 @@ public interface PersonClient {
         public PersonClient create(final Throwable cause) {
             return new PersonClient() {
                 @Override
-                public void createPerson(final PersonCreateDto person) {
+                public void createPerson(final PersonCreateRequest person) {
                     log.error("The person could not be created. payload={}", person);
                     log.error("The microservice cannot respond at this moment", cause);
                 }
