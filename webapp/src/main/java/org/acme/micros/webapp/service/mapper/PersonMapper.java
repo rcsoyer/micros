@@ -1,7 +1,7 @@
 package org.acme.micros.webapp.service.mapper;
 
 import org.acme.micros.webapp.domain.Person;
-import org.acme.micros.webapp.service.dto.PersonCreateCommand;
+import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import org.acme.micros.webapp.service.dto.PersonCreateResponse;
 import org.mapstruct.Mapper;
 
@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface PersonMapper {
 
-    Person from(PersonCreateCommand command);
+    Person from(PersonCreateRequest command);
 
     PersonCreateResponse to(Person person);
 }

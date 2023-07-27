@@ -6,7 +6,7 @@ import java.util.Set;
 import org.acme.micros.webapp.domain.Person;
 import org.acme.micros.webapp.exception.ConflictException;
 import org.acme.micros.webapp.repository.PersonRepository;
-import org.acme.micros.webapp.service.dto.PersonCreateCommand;
+import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import org.acme.micros.webapp.service.dto.PersonCreateResponse;
 import org.acme.micros.webapp.service.mapper.PersonMapper;
 import org.junit.jupiter.api.Assertions;
@@ -47,7 +47,7 @@ class PersonServiceTest {
         void create_whenPersonDontExistsThenCreate() {
             final var name = "Arthur Dent";
             final var birthDate = LocalDate.now();
-            final var personToBeCreated = new PersonCreateCommand(name, birthDate);
+            final var personToBeCreated = new PersonCreateRequest(name, birthDate);
             final var person = new Person(name, birthDate);
 
             when(repository.existsByName(name)).thenReturn(false);
@@ -70,7 +70,7 @@ class PersonServiceTest {
 
         @Test
         void create_whenPersonExistsThenError() {
-            final var personToBeCreated = new PersonCreateCommand("Arthur Dent", LocalDate.now());
+            final var personToBeCreated = new PersonCreateRequest("Arthur Dent", LocalDate.now());
 
             when(repository.existsByName(personToBeCreated.name())).thenReturn(true);
 

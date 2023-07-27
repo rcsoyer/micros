@@ -9,7 +9,7 @@ import org.acme.micros.webapp.domain.Person;
 import org.acme.micros.webapp.repository.PersonRepository;
 import org.acme.micros.webapp.service.BannedYearsDefinition;
 import org.acme.micros.webapp.service.PersonService;
-import org.acme.micros.webapp.service.dto.PersonCreateCommand;
+import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +60,7 @@ class PersonControllerTestIT extends BaseControllerTest {
 
         @Test
         void createPerson_wheyPayloadOkThenSuccess() throws Exception {
-            final var person = new PersonCreateCommand("j.r.r tolkien", LocalDate.now());
+            final var person = new PersonCreateRequest("j.r.r tolkien", LocalDate.now());
             final var json = objectMapper.writeValueAsString(person);
 
             mockMvc.perform(post(BASE_PATH)
@@ -81,7 +81,7 @@ class PersonControllerTestIT extends BaseControllerTest {
 
         @Test
         void createPerson_wheyPayloadMissingMandatoryThenError() throws Exception {
-            final var json = objectMapper.writeValueAsString(new PersonCreateCommand(null, null));
+            final var json = objectMapper.writeValueAsString(new PersonCreateRequest(null, null));
 
             mockMvc.perform(post(BASE_PATH)
                               .contentType(APPLICATION_JSON)
@@ -102,7 +102,7 @@ class PersonControllerTestIT extends BaseControllerTest {
         void createPerson_wheyPayloadInvalidThenError() throws Exception {
             final var shortName = "R";
             final var futureBirthDate = LocalDate.now().plusDays(1L);
-            final var json = objectMapper.writeValueAsString(new PersonCreateCommand(shortName, futureBirthDate));
+            final var json = objectMapper.writeValueAsString(new PersonCreateRequest(shortName, futureBirthDate));
 
             mockMvc.perform(post(BASE_PATH)
                               .contentType(APPLICATION_JSON)
@@ -121,7 +121,7 @@ class PersonControllerTestIT extends BaseControllerTest {
 
         @Test
         void createPerson_wheyPersonExistsThenError() throws Exception {
-            final var person = new PersonCreateCommand("j.r.r tolkien", LocalDate.now());
+            final var person = new PersonCreateRequest("j.r.r tolkien", LocalDate.now());
             personService.create(person);
 
             final var json = objectMapper.writeValueAsString(person);
@@ -149,23 +149,23 @@ class PersonControllerTestIT extends BaseControllerTest {
         void setUp() {
             bannedYears = new ArrayList<>(bannedYearsDefinition.bannedYearsFromFile());
 
-            final var person1Banned = new PersonCreateCommand("j.r.r tolkien",
+            final var person1Banned = new PersonCreateRequest("j.r.r tolkien",
                                                               LocalDate.of(bannedYears.get(0), JANUARY, 1));
             personService.create(person1Banned);
 
-            final var person2Banned = new PersonCreateCommand("Stephen King",
+            final var person2Banned = new PersonCreateRequest("Stephen King",
                                                               LocalDate.of(bannedYears.get(1), FEBRUARY, 2));
             personService.create(person2Banned);
 
-            final var person3Banned = new PersonCreateCommand("Isaac Asimov",
+            final var person3Banned = new PersonCreateRequest("Isaac Asimov",
                                                               LocalDate.of(bannedYears.get(2), MARCH, 3));
             personService.create(person3Banned);
 
-            final var person4NotBanned = new PersonCreateCommand("Sylvia Plath",
+            final var person4NotBanned = new PersonCreateRequest("Sylvia Plath",
                                                                  LocalDate.of(1932, OCTOBER, 27));
             personService.create(person4NotBanned);
 
-            final var person5NotBanned = new PersonCreateCommand("Ada Lovelace",
+            final var person5NotBanned = new PersonCreateRequest("Ada Lovelace",
                                                                  LocalDate.of(1815, DECEMBER, 10));
             personService.create(person5NotBanned);
         }

@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PersonCreateCommandTest {
+class PersonCreateRequestTest {
 
     @Test
     void testSanitizeOnInstantiation() {
-        final var person = new PersonCreateCommand("   sid    barret  ", LocalDate.now());
+        final var person = new PersonCreateRequest("   sid    barret  ", LocalDate.now());
 
         assertEquals("sid barret", person.name());
     }

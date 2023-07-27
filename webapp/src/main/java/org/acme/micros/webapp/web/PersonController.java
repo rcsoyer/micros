@@ -5,7 +5,7 @@ import javax.validation.Valid;
 
 import org.acme.micros.webapp.repository.projection.PersonFiltered;
 import org.acme.micros.webapp.service.PersonService;
-import org.acme.micros.webapp.service.dto.PersonCreateCommand;
+import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import org.acme.micros.webapp.service.dto.PersonCreateResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public PersonCreateResponse createPerson(@RequestBody @Valid final PersonCreateCommand createCommand) {
+    public PersonCreateResponse createPerson(@RequestBody @Valid final PersonCreateRequest createCommand) {
         log.debug("Rest API call to create a person={}", createCommand);
         return service.create(createCommand);
     }

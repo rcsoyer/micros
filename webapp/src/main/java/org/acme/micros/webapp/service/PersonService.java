@@ -6,7 +6,7 @@ import org.acme.micros.webapp.domain.Person;
 import org.acme.micros.webapp.exception.ConflictException;
 import org.acme.micros.webapp.repository.PersonRepository;
 import org.acme.micros.webapp.repository.projection.PersonFiltered;
-import org.acme.micros.webapp.service.dto.PersonCreateCommand;
+import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import org.acme.micros.webapp.service.dto.PersonCreateResponse;
 import org.acme.micros.webapp.service.mapper.PersonMapper;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class PersonService {
      * @throws ConflictException if a {@link Person} with same name already exists in the
      *                           app
      */
-    public PersonCreateResponse create(final PersonCreateCommand command) {
+    public PersonCreateResponse create(final PersonCreateRequest command) {
         log.debug("Create a person: {}", command);
 
         if (repository.existsByName(command.name())) {
