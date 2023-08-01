@@ -46,6 +46,7 @@
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -76,11 +77,13 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
