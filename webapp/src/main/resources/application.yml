@@ -20,7 +20,7 @@ spring:
     hikari:
       data-source-properties:
         useConfigs: maxPerformance
-        enabledTLSProtocols: TLSv1.2
+        enabledTLSProtocols: TLSv1.3
         zeroDateTimeBehavior: convertToNull
         rewriteBatchedStatements: true
         useServerPrepStmts: true
