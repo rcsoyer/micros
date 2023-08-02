@@ -38,7 +38,7 @@ public class PersonService {
             throw new ConflictException("A person's name is unique. The system already have a person with the provided name");
         }
 
-        final var entity = mapper.from(person);
+        final Person entity = mapper.from(person);
         return mapper.to(repository.save(entity));
     }
 
