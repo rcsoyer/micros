@@ -24,8 +24,6 @@ spring:
         zeroDateTimeBehavior: convertToNull
         rewriteBatchedStatements: true
         useServerPrepStmts: true
-        prepStmtCacheSize: 500
-        prepStmtCacheSqlLimit: 2048
         cacheResultSetMetadata: true
         useUnbufferedInput: false
         useReadAheadInput: false
