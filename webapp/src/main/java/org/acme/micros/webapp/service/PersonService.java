@@ -2,6 +2,8 @@ package org.acme.micros.webapp.service;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.acme.micros.webapp.domain.Person;
 import org.acme.micros.webapp.exception.ConflictException;
 import org.acme.micros.webapp.repository.PersonRepository;
@@ -9,8 +11,6 @@ import org.acme.micros.webapp.repository.projection.PersonFiltered;
 import org.acme.micros.webapp.service.dto.PersonCreateRequest;
 import org.acme.micros.webapp.service.dto.PersonCreateResponse;
 import org.acme.micros.webapp.service.mapper.PersonMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,15 +30,16 @@ public class PersonService {
      * @throws ConflictException if a {@link Person} with same name already exists in the
      *                           app
      */
-    public PersonCreateResponse create(final PersonCreateRequest command) {
-        log.debug("Create a person: {}", command);
+    public PersonCreateResponse create(final PersonCreateRequest person) {
+        log.debug("Create a person: {}", person);
 
-        if (repository.existsByName(command.name())) {
-            log.warn("There was an attempt to create a Person with duplicated data. Payload provided: {}", command);
+        if (repository.existsByName(person.name())) {
+            log.warn("There was an attempt to create a Person with duplicated data. Payload provided: {}", person);
             throw new ConflictException("A person's name is unique. The system already have a person with the provided name");
         }
 
-        return mapper.to(repository.save(mapper.from(command)));
+        final var entity = mapper.from(person);
+        return mapper.to(repository.save(entity));
     }
 
     /**
