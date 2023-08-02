@@ -31,12 +31,17 @@ class ExceptionHandlerAdvice implements ProblemHandling {
         log.warn("There was an attempt to create or update data that violates integrity constraints", error);
         final var problem = Problem.builder()
                                    .withCause(toProblem(error))
-                                   .withStatus(Status.CONFLICT)
-                                   .withDetail("Invalid duplicated data provided")
-                                   .build();
+                                   .withStatus(Status.CONFLICT);
+
+        if (error instanceof DataIntegrityViolationException dataIntegrityException) {
+            problem.withDetail(dataIntegrityException.getMostSpecificCause().getMessage());
+        } else {
+            problem.withDetail("Invalid duplicated data provided");
+        }
+
         return ResponseEntity
                  .status(CONFLICT)
-                 .body(problem);
+                 .body(problem.build());
     }
 
 }
