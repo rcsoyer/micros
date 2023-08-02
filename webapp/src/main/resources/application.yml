@@ -19,15 +19,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       data-source-properties:
-        useConfigs: maxPerformance
-        enabledTLSProtocols: TLSv1.3
-        zeroDateTimeBehavior: convertToNull
+        useConfigs: maxPerformance-8-0
+        tlsVersions: TLSv1.3
         rewriteBatchedStatements: true
         useServerPrepStmts: true
         cacheResultSetMetadata: true
         useUnbufferedInput: false
-        useReadAheadInput: false
         useCursorFetch: true
+        defaultFetchSize: 200
   jpa:
     hibernate:
       ddl-auto: validate
