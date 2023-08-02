@@ -11,7 +11,6 @@ import javax.persistence.MappedSuperclass;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -29,9 +28,7 @@ abstract class AbstractEntity {
 
     @Id
     @EqualsAndHashCode.Include
-    @GenericGenerator(name = "assigned-identity",
-                      strategy = "org.acme.micros.webapp.domain.AssignedIdentityGenerator")
-    @GeneratedValue(generator = "assigned-identity", strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @CreatedDate
