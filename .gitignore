@@ -26,3 +26,4 @@ target/
 /webapp/web-app.iml
 /cmd/cmd.iml
 /microservice/microservice.iml
+/qodana.yaml
