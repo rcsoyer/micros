@@ -2,7 +2,6 @@ server:
   port: 5001
   shutdown: graceful
   error:
-    include-stacktrace: never
     whitelabel.enabled: false
   servlet:
     encoding:
