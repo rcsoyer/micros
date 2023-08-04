@@ -15,7 +15,6 @@ spring:
   application:
     name: webapp-service
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       data-source-properties:
         useConfigs: maxPerformance-8-0
