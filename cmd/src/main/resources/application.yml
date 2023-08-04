@@ -1,31 +1,31 @@
 spring:
+  main:
+    web-application-type: none
   application:
     name: cmdapp
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+      compression:
+        request:
+          enabled: true
+        response:
+          enabled: true
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+      circuitbreaker:
+        enabled: true
+        group:
+          enabled: true
 
 logging:
   level:
     root: INFO
     feign: DEBUG
-
-feign:
-  compression:
-    request:
-      enabled: true
-    response:
-      enabled: true
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-  circuitbreaker:
-    enabled: true
-    group:
-      enabled: true
-  okhttp:
-    enabled: true
-  httpclient:
-    enabled: false
 
 eureka:
   client:

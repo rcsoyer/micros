@@ -12,21 +12,21 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Configuration
-@EnableFeignClients(basePackages = "org.acme.micros.cmd.client")
-public class FeignConfig {
+@EnableFeignClients("org.acme.micros.cmd.client")
+class FeignConfig {
 
     @Bean
-    public Logger.Level feignLoggerLevel() {
+    Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
     }
 
     @Bean
-    public Logger feignLogger() {
+    Logger feignLogger() {
         return new Slf4jLogger();
     }
 
     @Bean
-    public RequestInterceptor requestInterceptor() {
+    RequestInterceptor requestInterceptor() {
         return requestTemplate ->
                  requestTemplate
                    .header(ACCEPT, APPLICATION_JSON_VALUE)
