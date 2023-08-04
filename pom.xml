@@ -34,7 +34,7 @@
     <modules>
         <module>webapp</module>
         <module>cmd</module>
-        <module>microservice</module>
+        <module>servicediscovery</module>
     </modules>
 
     <dependencyManagement>

@@ -1,7 +1,7 @@
 logging:
   level:
     # root: DEBUG
-    org.acme.micros.microservices: DEBUG
+    org.acme.micros.servicediscovery: DEBUG
     com.netflix:
       eureka: DEBUG
       discovery: DEBUG
