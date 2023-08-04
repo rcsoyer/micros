@@ -81,7 +81,7 @@ management:
     health:
       group:
         liveness:
-          include: livenessstate,livenessStateProbeIndicator,diskSpace,refreshScope
+          include: livenessState,diskSpace,refreshScope
         readiness:
           include: readinessState,refreshScope,db
       probes:
