@@ -23,6 +23,9 @@ eureka:
 logging:
   level:
     root: INFO
+    com.netflix:
+      eureka: INFO
+      discovery: INFO
 
 management:
   endpoints:
