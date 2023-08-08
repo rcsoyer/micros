@@ -24,19 +24,19 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("persons")
-public class PersonController {
+class PersonController {
 
     private final PersonService service;
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public PersonCreateResponse createPerson(@RequestBody @Valid final PersonCreateRequest createCommand) {
+    PersonCreateResponse createPerson(@RequestBody @Valid final PersonCreateRequest createCommand) {
         log.debug("Rest API call to create a person={}", createCommand);
         return service.create(createCommand);
     }
 
     @GetMapping
-    public List<PersonFiltered> findPeopleNotBanned() {
+    List<PersonFiltered> findPeopleNotBanned() {
         log.debug("Rest API call to get all the people not born in the banned years");
         return service.filterByBannedYears();
     }
