@@ -10,10 +10,10 @@ spring:
 
 logging:
   level:
-   # root: DEBUG
+    #root: DEBUG
     org.acme.micros.webapp: DEBUG
-    org.hibernate.SQL: DEBUG
-   # org.springframework.orm.jpa: DEBUG
-   # org.springframework.jdbc.core: DEBUG
-   # com.zaxxer.hikari.HikariConfig: DEBUG
-   # org.springframework.transaction: DEBUG
+   # org.hibernate.SQL: DEBUG
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    #org.springframework.orm.jpa: DEBUG
+    #org.springframework.jdbc.core: DEBUG
+    #org.springframework.transaction: DEBUG
