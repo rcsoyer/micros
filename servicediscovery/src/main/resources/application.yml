@@ -42,9 +42,9 @@ management:
     health:
       group:
         liveness:
-          include: livenessState,diskSpace,refreshScope
+          include: livenessState,diskSpace
         readiness:
-          include: readinessState,refreshScope
+          include: readinessState,ping
       probes:
         enabled: true
       show-details: always

@@ -79,9 +79,9 @@ management:
     health:
       group:
         liveness:
-          include: livenessState,diskSpace,refreshScope
+          include: livenessState,diskSpace
         readiness:
-          include: readinessState,refreshScope,db
+          include: readinessState,ping,db
       probes:
         enabled: true
       show-details: always
