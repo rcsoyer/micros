@@ -17,11 +17,24 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-webapp/target
-webapp/build
 .classpath
 .project
 .settings/
-cmd.iml
+
+/webapp/target
+/webapp/build
+/webapp/webapp.iml
+
+/cmd/build
+/cmd/target
+/cmd/cmd.iml
+
+/buildSrc/build/
+/buildSrc/target/
+/buildSrc/buildSrc.iml
+
+/servicediscovery/build
+/servicediscovery/target
+/servicediscovery/servicediscovery.iml
 
 /.idea/
