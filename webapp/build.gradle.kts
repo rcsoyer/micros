@@ -29,6 +29,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:mysql")
+
+    testAnnotationProcessor("org.mapstruct:mapstruct-processor:$mapStructVersion")
 }
 
 description = "web-app"
