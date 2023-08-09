@@ -15,13 +15,11 @@ public abstract class BaseTestContainer {
     private static final MySQL8Container MYSQL_CONTAINER;
 
     static {
-        try (final var mysqlContainer = new MySQL8Container()
-                                          .withUsername("root")
-                                          .withPassword("root")
-                                          .withReuse(true)) {
-            MYSQL_CONTAINER = mysqlContainer;
-            MYSQL_CONTAINER.start();
-        }
+        MYSQL_CONTAINER = new MySQL8Container()
+                            .withUsername("root")
+                            .withPassword("root")
+                            .withReuse(true);
+        MYSQL_CONTAINER.start();
     }
 
     @DynamicPropertySource
