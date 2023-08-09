@@ -20,6 +20,7 @@ hs_err_pid*
 .classpath
 .project
 .settings/
+.gradle
 
 /webapp/target
 /webapp/build
@@ -30,8 +31,7 @@ hs_err_pid*
 /cmd/cmd.iml
 
 /buildSrc/build/
-/buildSrc/target/
-/buildSrc/buildSrc.iml
+/buildSrc/.gradle/
 
 /servicediscovery/build
 /servicediscovery/target
