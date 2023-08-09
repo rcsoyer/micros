@@ -15,6 +15,8 @@ val zalandoProblemVersion by extra { "0.29.1" }
 val springDocApiVersion by extra { "1.7.0" }
 val logBackEncoderVersion by extra { "7.4" }
 val testContainersVersion by extra { "1.18.3" }
+val eurekaVersion by extra { "4.0.3" }
+val feignVersion by extra { "4.0.4" }
 
 subprojects {
     apply(plugin = "org.springframework.boot")
@@ -22,10 +24,6 @@ subprojects {
     apply(plugin = "io.freefair.lombok")
 
     dependencyManagement {
-        imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudDepsVersion")
-        }
-
         dependencies {
             dependency("info.picocli:picocli-spring-boot-starter:$picocliSpringBootVersion")
             dependency("org.mapstruct:mapstruct:$mapStructVersion")
@@ -38,6 +36,9 @@ subprojects {
             dependency("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$resilience4JVersion")
             dependency("io.github.openfeign:feign-okhttp:$feignOkHttpVersion")
             dependency("com.github.ben-manes.caffeine:caffeine:$caffeineVersion")
+            dependency("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$eurekaVersion")
+            dependency("org.springframework.cloud:spring-cloud-starter-openfeign:$feignVersion")
+            dependency("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:$eurekaVersion")
         }
 
     }
