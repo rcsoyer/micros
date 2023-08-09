@@ -12,14 +12,16 @@ import org.testcontainers.containers.MySQLContainer;
  */
 public abstract class BaseTestContainer {
 
-    private static final MySQLContainer<?> MYSQL_CONTAINER;
+    private static final MySQL8Container MYSQL_CONTAINER;
 
     static {
-        MYSQL_CONTAINER = new MySQLContainer<>("mysql:8.0")
-            .withUsername("root")
-            .withPassword("root")
-            .withReuse(true);
-        MYSQL_CONTAINER.start();
+        try (final var mysqlContainer = new MySQL8Container()
+                                          .withUsername("root")
+                                          .withPassword("root")
+                                          .withReuse(true)) {
+            MYSQL_CONTAINER = mysqlContainer;
+            MYSQL_CONTAINER.start();
+        }
     }
 
     @DynamicPropertySource
@@ -27,5 +29,11 @@ public abstract class BaseTestContainer {
         registry.add("spring.datasource.url", MYSQL_CONTAINER::getJdbcUrl);
         registry.add("spring.datasource.password", MYSQL_CONTAINER::getPassword);
         registry.add("spring.datasource.username", MYSQL_CONTAINER::getUsername);
+    }
+
+    private static class MySQL8Container extends MySQLContainer<MySQL8Container> {
+        private MySQL8Container() {
+            super("mysql:8.0");
+        }
     }
 }
