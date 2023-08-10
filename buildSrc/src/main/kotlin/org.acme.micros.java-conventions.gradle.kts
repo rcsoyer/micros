@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     idea
     java
@@ -21,4 +23,5 @@ tasks.withType<Javadoc>() {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging.events.addAll(TestLogEvent.values())
 }
