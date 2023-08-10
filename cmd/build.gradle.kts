@@ -20,3 +20,5 @@ dependencies {
 }
 
 description = "cmd"
+
+springBoot.buildInfo()

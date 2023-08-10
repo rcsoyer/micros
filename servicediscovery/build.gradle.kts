@@ -12,4 +12,6 @@ dependencies {
     runtimeOnly("net.logstash.logback:logstash-logback-encoder")
 }
 
-description = "microservice"
+description = "service-discovery"
+
+springBoot.buildInfo()
