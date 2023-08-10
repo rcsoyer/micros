@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CmdApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <module name="parent.cmd.main" />
+    <option name="PROGRAM_PARAMETERS" value="-b=&quot;1939-01-01&quot; -n=&quot;Larry Watchowsky&quot;" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.acme.micros.cmd.CmdApp" />
+    <option name="VM_PARAMETERS" value="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8 -XX:+UnlockDiagnosticVMOptions -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heap/dump.hprof -Duser.timezone=UTC -XshowSettings:vm -showversion -Xms256m -Xmx512m -XX:+UseG1GC -XX:+UseStringDeduplication" />
+    <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+      <option name="credential" />
+      <option name="region" />
+      <option name="useCurrentConnection" value="false" />
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
