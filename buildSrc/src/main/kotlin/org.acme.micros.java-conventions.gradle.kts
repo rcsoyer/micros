@@ -1,4 +1,7 @@
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
 
 plugins {
     idea
@@ -23,5 +26,5 @@ tasks.withType<Javadoc>() {
 
 tasks.test {
     useJUnitPlatform()
-    testLogging.events.addAll(TestLogEvent.values())
+    testLogging.events.addAll(listOf(FAILED, PASSED, SKIPPED, STANDARD_ERROR))
 }
