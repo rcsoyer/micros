@@ -6,6 +6,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
 plugins {
     idea
     java
+    jacoco
 }
 
 repositories {
@@ -27,4 +28,11 @@ tasks.withType<Javadoc>() {
 tasks.test {
     useJUnitPlatform()
     testLogging.events.addAll(listOf(FAILED, PASSED, SKIPPED, STANDARD_ERROR))
+}
+
+tasks.jacocoTestReport {
+    reports {
+        html.required.set(true)
+        html.outputLocation.file("$buildDir/reports/coverage")
+    }
 }
