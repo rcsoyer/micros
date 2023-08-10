@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface PersonMapper {
 
-    Person from(PersonCreateRequest command);
+    Person from(PersonCreateRequest request);
 
     PersonCreateResponse to(Person person);
 }
