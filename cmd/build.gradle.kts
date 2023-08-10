@@ -10,6 +10,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
     runtimeOnly("net.logstash.logback:logstash-logback-encoder")
     runtimeOnly("io.github.openfeign:feign-okhttp")
     runtimeOnly("com.github.ben-manes.caffeine:caffeine")

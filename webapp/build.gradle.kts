@@ -18,6 +18,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui")
     implementation("org.springdoc:springdoc-openapi-data-rest")
 
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.mapstruct:mapstruct-processor:$mapStructVersion")
 
     runtimeOnly("com.github.ben-manes.caffeine:caffeine")
