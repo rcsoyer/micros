@@ -3,7 +3,7 @@
     <option name="ACTIVE_PROFILES" value="dev" />
     <module name="parent.web-app.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="org.acme.micros.webapp.WebApp" />
-    <option name="VM_PARAMETERS" value="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8 -XX:+UnlockDiagnosticVMOptions -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heap/dump.hprof -Duser.timezone=UTC -XshowSettings:vm -showversion -Xms256m -Xmx512m -XX:+UseG1GC -XX:+UseStringDeduplication" />
+    <option name="VM_PARAMETERS" value="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8 -XX:+UnlockDiagnosticVMOptions -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heap/dump.hprof -Duser.timezone=UTC -XshowSettings:vm -showversion -Xms128m -Xmx512m -XX:+UseG1GC -XX:+UseStringDeduplication" />
     <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
       <option name="credential" />
       <option name="region" />
