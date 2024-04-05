@@ -1,20 +1,20 @@
 plugins {
     id("org.springframework.boot") version "3.2.4"
     id("io.spring.dependency-management") version "1.1.4"
-    id("io.freefair.lombok") version "8.4"
+    id("io.freefair.lombok") version "8.6"
 }
 
 val mapStructVersion by extra { "1.5.5.Final" }
-val resilience4JVersion by extra { "3.1.0" }
-val feignOkHttpVersion by extra { "13.1" }
+val resilience4JVersion by extra { "3.1.1" }
+val feignOkHttpVersion by extra { "13.2.1" }
 val caffeineVersion by extra { "3.1.8" }
 val picocliSpringBootVersion by extra { "4.7.5" }
 val zalandoProblemVersion by extra { "0.29.1" }
-val springDocApiVersion by extra { "1.7.0" }
+val springDocApiVersion by extra { "1.8.0" }
 val logBackEncoderVersion by extra { "7.4" }
-val testContainersVersion by extra { "1.19.3" }
-val eurekaVersion by extra { "4.1.0" }
-val feignVersion by extra { "4.1.0" }
+val testContainersVersion by extra { "1.19.7" }
+val eurekaVersion by extra { "4.1.1" }
+val feignVersion by extra { "4.1.1" }
 
 subprojects {
     apply(plugin = "org.springframework.boot")
