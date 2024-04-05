@@ -1,0 +1,25 @@
+server:
+  port: 5002
+  shutdown: graceful
+  error:
+    whitelabel.enabled: false
+  servlet:
+    encoding:
+      force: true
+    context-path: /authorization-server
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: authorization-server
+  lifecycle:
+    timeout-per-shutdown-phase: 80s
+  mvc:
+    contentnegotiation:
+      media-types:
+        defaultContentType:
+          application/json
+
+logging:
+  level:
+    root: INFO
