@@ -33,6 +33,6 @@ tasks.test {
 tasks.jacocoTestReport {
     reports {
         html.required.set(true)
-        html.outputLocation.file("$buildDir/reports/coverage")
+        html.outputLocation.file("${layout.buildDirectory}/reports/coverage")
     }
 }
