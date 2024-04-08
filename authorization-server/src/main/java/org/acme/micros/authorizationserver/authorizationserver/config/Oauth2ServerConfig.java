@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -16,8 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
+import static org.acme.micros.authorizationserver.authorizationserver.config.DefaultSecurityConfig.LOGIN_URL;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.MediaType.TEXT_HTML;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Slf4j
@@ -59,9 +60,9 @@ class Oauth2ServerConfig {
     private Customizer<ExceptionHandlingConfigurer<HttpSecurity>> loginEntryPoint() {
         return exceptions -> exceptions
                                .defaultAuthenticationEntryPointFor(
-                                 new LoginUrlAuthenticationEntryPoint("/login"),
-                                 new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
+                                 new LoginUrlAuthenticationEntryPoint(LOGIN_URL),
+                                 new MediaTypeRequestMatcher(TEXT_HTML)
                                )
-                               .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"));
+                               .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(LOGIN_URL));
     }
 }
