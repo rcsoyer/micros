@@ -19,7 +19,70 @@ spring:
       media-types:
         defaultContentType:
           application/json
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            provider: google
+            client-id: REPLACE_ME_SECRET
+            client-secret: REPLACE_ME_SECRET
+            authorization-grant-type: authorization_code
+            redirect-uri: ${web.api-base-path}/login/oauth2/code/google
+            scope: openid,profile,email,phone
+            client-name: Login with Google
+      authorizationserver:
+        issuer: ${spring.application.name}/${server.port}
+        client:
+          webapp-client:
+            registration:
+              client-id: webapp-client
+              client-secret: "{noop}secret"
+              client-name: Web App Client
+              client-authentication-methods:
+                - client_secret_basic
+              authorization-grant-types:
+                - authorization_code
+                - refresh_token
+              redirect-uris:
+                - http://cmdapp/login/oauth2/code/webapp-client-oidc
+                - http://cmdapp/authorized
+              scopes:
+                - openid
+                - profile
+                - email
+                - phone
+                - person.read
+                - person.write
 
 logging:
   level:
     root: INFO
+    org.acme.authorizationserver: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+      path-mapping:
+        health: health
+        info: info
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      group:
+        liveness:
+          include: livenessState,diskSpace
+        readiness:
+          include: readinessState,ping
+      probes:
+        enabled: true
+      show-details: always
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

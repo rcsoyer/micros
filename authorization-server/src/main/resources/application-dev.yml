@@ -1,0 +1,10 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+            google:
+                redirect-uri: localhost:5002/login/oauth2/code/google
+
+web:
+  api-base-path: localhost:5002
