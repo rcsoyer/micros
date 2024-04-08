@@ -11,11 +11,10 @@ import org.springframework.security.config.annotation.web.configurers.ExceptionH
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
-import static org.acme.micros.authorizationserver.authorizationserver.config.DefaultSecurityConfig.LOGIN_URL;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.MediaType.TEXT_HTML;
@@ -59,9 +58,8 @@ class Oauth2ServerConfig {
     private Customizer<ExceptionHandlingConfigurer<HttpSecurity>> loginEntryPoint() {
         return exceptions -> exceptions
                                .defaultAuthenticationEntryPointFor(
-                                 new LoginUrlAuthenticationEntryPoint(LOGIN_URL),
+                                 new BearerTokenAuthenticationEntryPoint(),
                                  new MediaTypeRequestMatcher(TEXT_HTML)
-                               )
-                               .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(LOGIN_URL));
+                               );
     }
 }
