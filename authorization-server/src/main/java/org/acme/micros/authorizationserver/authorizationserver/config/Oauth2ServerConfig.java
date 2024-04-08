@@ -48,8 +48,7 @@ class Oauth2ServerConfig {
                                     "/info",
                                     "/health",
                                     "/health/liveness",
-                                    "/health/readiness",
-                                    "/users/login-response");
+                                    "/health/readiness");
     }
 
     @Bean
